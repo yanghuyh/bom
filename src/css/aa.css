@@ -1,0 +1,10 @@
+@charset "utf-8";
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0}
+ul,li{list-style: none;}
+a{text-decoration: none;}
+h1,h2,h3,h4,h5,h6{font-weight: normal;font-size: 16px}
+body,html{height: 100%;}
+
+#top{height: 42px;}
+
+.top,.nam,.ncw,.yang,.fop,.nup{margin: 0 auto;width: 1230px;}

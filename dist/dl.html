@@ -1,0 +1,282 @@
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1.0"><meta http-equiv=X-UA-Compatible content="ie=edge"><link rel=stylesheet href=./css/aa.css><title>Document</title><style>
+        .img1 {
+            width: 190px;
+            height: 27px;
+            margin: 30px auto;
+        }
+
+        #nup {
+            background: blue;
+        }
+
+        .nup {
+            background: url(./img/t2.png);
+            width: 1190px;
+            height: 600px;
+            position: relative;
+        }
+        #j4{
+            width: 350px;
+            height: 404px;
+            background: #fff;
+            position: absolute;
+            top: 91px;
+            right: 80px;
+        }
+        #btn11,#btn22{
+            width: 155px;
+            height: 50px;
+            margin: 10px 5px;
+            float: left;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 25px
+        }
+        #for11,#for22{
+            float: left;
+            width: 300px;
+            height: 42px;
+            line-height: 30px;
+            margin: 0 26px;
+        }
+        #for66{
+            float: left;
+        }
+        #gogo,#resut,#rigist{
+            width: 300px;
+            height: 42px;
+            margin: 0 26px;
+            border: 0;
+            font-size: 16px
+        }
+        #for1,#for2,#for3,#for4,#for5{
+            float: left;
+            width: 300px;
+            height: 42px;
+            margin: 0 26px;
+            
+        }
+        /* #resut,#rigist{
+            width: 300px;
+            height: 42px;
+        } */
+    </style></head><body><div class=fop><img class=img1 src=./img/t1.png></div><div id=nup><div class=nup><div class=qe id=j4><div class=btn><div id=btn11 style=background:red>登&nbsp;录</div><div id=btn22>注&nbsp;册</div></div><div class=part><div id=part1><div id=for11><span><span style="color: red">*&nbsp;</span>用&nbsp;&nbsp;户&nbsp;&nbsp;名：</span> <input type=text id=user1><div id=user1Tip></div></div><div id=for22><span><span style="color: red">*&nbsp;</span>密&emsp;&emsp;码：</span> <input type=password id=pwd2><div id=pwd2Tip></div></div><div id=for66><button id=gogo>GO</button></div></div><div id=part2 style=display:none><div id=for1><span><span style="color: red">*&nbsp;</span>用&nbsp;&nbsp;户&nbsp;&nbsp;名：</span> <input type=text id=user><div class=bei id=userTip></div></div><div id=for2><span><span style="color: red">*&nbsp;</span>密&emsp;&emsp;码：</span> <input type=password id=pwd1><div class=bei id=pwdTip></div></div><div id=for3><span><span style="color: red">*&nbsp;</span>确认密码：</span> <input type=password id=repwd><div class=bei id=repwdTip></div></div><div id=for4><span><span style="color: red">*&nbsp;</span>联系方式：</span> <input type=text id=tel><div class=bei id=telTip></div></div><div id=for5><span><span style="color: red">*&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email：</span> <input type=text id=email><div class=bei id=emailTip></div></div><div id=for6><button id=rigist>提交</button>&nbsp; <button id=resut>重置</button></div></div></div></div></div></div></body></html><script type=text/javascript src=./js/jquery.js></script><script type=text/javascript src=./js/bootstrap.js></script><script>
+    var btn = document.querySelectorAll(".btn div");
+    var part = document.querySelectorAll('.part #part1,#part2');
+    for (var i = 0; i < btn.length; i++) {
+        btn[i].onclick = function () {
+            for (var i = 0; i < btn.length; i++) {
+                btn[i].index = i;
+                btn[i].style.background = "";
+                part[i].style.display = "none";
+            }
+            this.style.background = "red";
+            part[this.index].style.display = "block";
+        }
+    }
+
+    function userVaildator() {
+        var regExp = /^[a-zA-Z0-9]{6,12}$/;
+        var $myval = $('#user').val();
+        if ($myval == '' || $myval == null) {
+            $('#userTip').text('账号不能为空').css({
+                'color': 'red'
+            });
+            return false;
+        }
+        else if (!regExp.test($myval)) {
+            $('#userTip').text('用户名输入格式错误').css({
+                'color': 'red'
+            });
+            return false;
+        } else {
+            $('#userTip').text('用户名输入正确').css({
+                'color': 'green'
+            })
+            return true;
+        }
+    }
+    function pwdVaildator() {
+        var regExp = /^[a-zA-Z0-9]{6,8}$/;
+        var $pwdval = $('#pwd1').val();
+        if ($pwdval == '' || $pwdval == null) {
+            $('#pwdTip').text('密码不能为空').css({
+                'color': 'red'
+            });
+            return false;
+        }
+        else if (!regExp.test($pwdval)) {
+            $('#pwdTip').text('密码输入格式错误').css({
+                'color': 'red'
+            });
+            return false;
+        } else {
+            $('#pwdTip').text('密码输入正确').css({
+                'color': 'green'
+            });
+            return true;
+        }
+    }
+    function repwdVaildator() {
+        var regExp = /^[a-zA-Z0-9]{6,8}$/;
+        var $repwdval = $('#repwd').val();
+        var $pwdval = $('#pwd1').val();
+        if ($repwdval == '' || $repwdval == null) {
+            $('#repwdTip').text('确认密码不能为空').css({
+                'color': 'red',
+            });
+            return false;
+        }
+        else if (!regExp.test($repwdval)) {
+            $('#repwdTip').text('确认密码输入格式错误').css({
+                'color': 'red',
+            });
+            return false;
+        } else if ($repwdval !== $pwdval) {
+            $('#repwdTip').text('两次密码输入不一致').css({
+                'color': 'red'
+            });
+            return false;
+        } else {
+            $('#repwdTip').text('确认密码输入正确').css({
+                'color': 'green',
+                'font-weight': 'normal'
+            });
+            return true;
+        }
+    }
+    function telVaildator() {
+        var regExp = /^(13|15)[0-9]{9}$/;
+        var $telval = $('#tel').val();
+        if ($telval == '' || $telval == null) {
+            $('#telTip').text('联系方式不能为空').css({
+                'color': 'red'
+            });
+            return false;
+        }
+        else if (!regExp.test($telval)) {
+            $('#telTip').text('联系方式输入格式错误').css({
+                'color': 'red',
+            });
+            return false;
+        } else {
+            $('#telTip').text('联系方式输入正确').css({
+                'color': 'green'
+            });
+            return true;
+        }
+    }
+    function emailVaildator() {
+        var regExp = /^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$/;
+        var $emailval = $('#email').val();
+        if ($emailval == '' || $emailval == null) {
+            $('#emailTip').text('email不能为空').css({
+                'color': 'red'
+            });
+            return false;
+        }
+        else if (!regExp.test($emailval)) {
+            $('#emailTip').text('email输入格式错误').css({
+                'color': 'red'
+            });
+            return false;
+        } else {
+            $('#emailTip').text('email输入正确').css({
+                'color': 'green'
+            });
+            return true;
+        }
+    }
+    $('#user').focus(function () {
+        $('#userTip').text('请输入英文或数字，长度在6~12之间').css({
+            'font-size': '10px',
+            'color': 'gray'
+        })
+    }).blur(userVaildator);
+    $('#pwd1').focus(function () {
+        $('#pwdTip').text('请输入英文或数字，长度在6~8之间').css({
+            'font-size': '10px',
+            'color': 'gray'
+        })
+    }).blur(pwdVaildator);
+    $('#repwd').focus(function () {
+        $('#repwdTip').text('两次密码输入一致').css({
+            'color': 'gray',
+            'font-size': '10px'
+        })
+    }).blur(repwdVaildator);
+    $('#tel').focus(function () {
+        $('#telTip').text('输入常用联系方式').css({
+            'color': 'gray',
+            'font-size': '10px'
+        })
+    }).blur(telVaildator);
+    $('#email').focus(function () {
+        $('#emailTip').text('输入正确的邮箱地址').css({
+            'color': 'gray',
+            'font-size': '10px'
+        })
+    }).blur(emailVaildator);
+    var rigist = document.getElementById('rigist');
+    rigist.onclick = function () {
+        console.log(666);
+
+        if (userVaildator() && pwdVaildator() && repwdVaildator() && telVaildator() && emailVaildator()) {
+            $('#rigist').html('成功');
+            $('#rigist').css({ "background": "green" });
+            var user = document.getElementById('user').value;
+            var pwd1 = document.getElementById('pwd1').value;
+            localStorage.setItem(user, pwd1);
+            fn2();
+            setTimeout(function(){
+                window.open("index.html");
+            },2000)
+            return true;
+        } else {
+            $('#rigist').css({ "background": "red" });
+            $('#rigist').html('失败');
+            return false;
+        }
+    }
+    var resut = document.getElementById('resut');
+    resut.onclick = fn2;
+    function fn2() {
+        var input = document.getElementById('part2').getElementsByTagName('input');
+        for (var i = 0; i < input.length; i++) {
+            input[i].value = '';
+            $('#userTip').text('');
+            $('#pwdTip').text('');
+            $('#repwdTip').text('');
+            $('#telTip').text('');
+            $('#emailTip').text('  ');
+            $('.divX').attr('style', 'display:none');
+            $('.divD').attr('style', 'display:none');
+        }
+    }
+    var gogo = document.getElementById('gogo');
+    gogo.onclick = function () {
+        var sum = localStorage.length;
+        if (sum == 0) {
+            $('#gogo').html('请先注册');
+        }
+        for (var i = 0; i < sum; i++) {
+            var key = localStorage.key(i);
+            var value = localStorage.getItem(key);
+            var user1 = document.getElementById('user1').value;
+            var pwd2 = document.getElementById('pwd2').value;
+            if (user1 == key || pwd2 == value) {
+                $('#gogo').html('成功');
+                $('#gogo').css({ "background": "green" });
+                setTimeout(function(){
+                    window.open("index.html");
+                },2000)
+
+            } else {
+                console.log(666);
+
+                $('#gogo').css({ "background": "red" });
+                $('#gogo').html('失败');
+            }
+        }
+    }
+</script>
